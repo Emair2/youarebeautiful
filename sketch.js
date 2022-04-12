@@ -1,7 +1,7 @@
-//我想存多一个版本啊阿啊
+//最初的版本
 //面部精细识别
 // The actual helpful link: https://www.npmjs.com/package/@tensorflow-models/face-landmarks-detection
-//2
+
 
 // let faces;
 // // let detector;
