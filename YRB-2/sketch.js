@@ -40,6 +40,14 @@ function draw() {
     if(faces !== undefined) {
         for(const f of faces) {
 
+          //改背景颜色，但是加了没办法多人
+          push();
+          //rect(0,0,640,480);
+          fill(0);
+          pop();
+          
+          push();
+
             let h = 0;
           
           //嘴巴内轮廓
@@ -153,6 +161,7 @@ function draw() {
           ellipse(rb[0],rb[1],3)
           }
           
+          pop();
           
         }
     }
