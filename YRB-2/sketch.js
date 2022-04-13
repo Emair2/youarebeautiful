@@ -11,22 +11,34 @@ let capture;
 let previousPixels;
 const w = 640;
 const h = 480;
+let shouldTakePhoto = true;
 
 function setup() {
     createCanvas(w, h);
 
-    capture = createCapture(VIDEO);
+    capture = createCapture(VIDEO,
+      function() {
+        console.log('capture ready.')
+    }
+      );
+
     capture.size(w, h);
     capture.hide();
 
     loadFaceModel();
 
     colorMode(HSB, 255);
+
+    //检测停止的部分
+    capture.elt.setAttribute('playsinline', '');
+    
+   
+
 }
 
 
 function draw() {
-    background(100, 255, 255);
+    background(100, 10, 255);
     if (capture.loadedmetadata && model !== undefined) {
         getFaces();
     }
@@ -85,12 +97,13 @@ function draw() {
           const rightEyeball = [385,386,387,373,374,380,385]
           
           
+        
           
           //嘴巴内轮廓
         for (let i = 0; i< month.length; i++){
           const mon = f.scaledMesh[month[i]];
           fill(252,244,14);
-          ellipse(mon[0],mon[1],3)
+          ellipse(mon[0],mon[1],2)
         }
             //左眼
           for (let i = 0; i< lefteye.length; i++){
@@ -117,14 +130,14 @@ function draw() {
           for (let i = 0; i< leftNostrils.length; i++){
           const lns = f.scaledMesh[leftNostrils[i]];
           fill(0);
-          ellipse(lns[0],lns[1],3)
+          ellipse(lns[0],lns[1],1)
         }
           
           //右鼻孔
           for (let i = 0; i< rightNostrils.length; i++){
           const rns = f.scaledMesh[rightNostrils[i]];
           fill(0);
-          ellipse(rns[0],rns[1],3)
+          ellipse(rns[0],rns[1],1)
         }
           
           
@@ -139,21 +152,21 @@ function draw() {
           for (let i = 0; i< leftEyebrows.length; i++){
           const lb = f.scaledMesh[leftEyebrows[i]];
           fill(0);
-          ellipse(lb[0],lb[1],3)
+          ellipse(lb[0],lb[1],2.5)
         }
           
           //右眉毛
           for (let i = 0; i< rightEyebrows.length; i++){
           const rb = f.scaledMesh[rightEyebrows[i]];
           fill(0);
-          ellipse(rb[0],rb[1],3)
+          ellipse(rb[0],rb[1],2.5)
         }
           
           //外轮廓
           for (let i = 0; i< face.length; i++){
           const fa = f.scaledMesh[face[i]];
           fill(0);
-          ellipse(fa[0],fa[1],3)
+          ellipse(fa[0],fa[1],5)
         }
           
           //左边眼球
@@ -172,8 +185,21 @@ function draw() {
           
           pop();
 
+          // check distance between eyes to trigger photo
+          let lEye = createVector(f.scaledMesh[133][0], f.scaledMesh[133][1])  
+          let rEye = createVector(f.scaledMesh[362][0], f.scaledMesh[362][1])
+          let eyeDistance = lEye.dist(rEye);
+          // console.log("eyeDistance: ", eyeDistance)
+
+
+          if(eyeDistance > 80 && shouldTakePhoto) {
+            save("youre-beautiful-once.jpg")
+            shouldTakePhoto = false;
+          }
+
         }
     }
+    
 }
 
 function drawSilhouette(f) {
@@ -254,6 +280,15 @@ async function getFaces() {
     }
 }
 
+
+
+function copyImage(src, dst) {
+  var n = src.length;
+  if (!dst || dst.length != n) dst = new src.constructor(n);
+  while (n--) dst[n] = src[n];
+  return dst;
+}
+
 function detectMotion() {
   capture.loadPixels();
     var total = 0;
@@ -303,4 +338,10 @@ function detectMotion() {
     }
 
     return total;
+    
+}
+
+
+function mousePressed() {
+  //save("myimage.jpg")
 }
