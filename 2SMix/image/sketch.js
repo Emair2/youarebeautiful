@@ -36,7 +36,7 @@ function setup() {
 
   //文字内容
   let sourceText = [
-    "I keep falling, I keep being reborn",
+    " ",
   ];
 
 
@@ -122,8 +122,8 @@ function draw() {
 
   //渲染效果
   blendMode(DIFFERENCE);
-  strokeWeight(20);
-  stroke(255, 255, 245);
+  //strokeWeight(20);
+  //stroke(255, 255, 245);
 
 
 
@@ -165,25 +165,15 @@ function draw() {
       strokeWeight(0);
       textStyle(ITALIC);
       textSize(21);
-      text('People always think they are affectionate.', 30, 40);
-      text('Seeing a bunny and saying it is cute,', 240, 60);
-      text('Seeing a lion and saying it is scary.', 60, 80);
-      text('Never knew how they bled and loved each other', 160, 100);
-      text('On the night of the storm.', 20, 120);
-      text('To free and entangle.', 380, 140);
-      text('Before building an ego，', 80, 160);
-      text('Destroy it.', 500, 180);
-      text('Like the beautiful bodies of those who die early.', 40, 200);
-      text('Roses at the head, desire seems so, ', 280, 220);
-      text('Decayed.', 80, 240);
-      text('Without ever having gotten，', 170, 260);
-      text('Even a joyful night,', 300, 280);
-      text('Or a glorious morning.', 20, 300);
-      text('Come and join my dream，', 380, 320);
-      text('All are builders, stealers, spotters.', 200, 340);
-      text('We will be born together, climax together, ', 40, 360);
-      text('Be dark together, be bright together, ', 250, 380);
-      text('And die together.', 120, 400);
+      //text('People always think they are affectionate.', 30, 40);
+      //text('Seeing a bunny and saying it is cute,', 240, 60);
+      //text('Seeing a lion and saying it is scary.', 60, 80);
+      //text('Never knew how they bled and loved each other', 160, 100);
+      //text('On the night of the storm.', 20, 120);
+      //text('To free and entangle.', 380, 140);
+      //text('Before building an ego，', 80, 160);
+      //text('Destroy it.', 500, 180);
+     
 
       //字母雨颜色参数
       fill(2000, 26, 1000);
