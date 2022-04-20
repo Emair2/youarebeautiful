@@ -41,13 +41,17 @@ function draw() {
     background(100, 10, 255);
     if (capture.loadedmetadata && model !== undefined) {
         getFaces();
+
+        // let totalMotion = detectMotion();
+        // console.log(totalMotion)
+        // if(totalMotion > 30000) {
+        //   console.log("movement!")
+        // }
     }
 
-    // let totalMotion = detectMotion();
+    
 
-    // if(totalMotion > 30000) {
-    //   alert("movement!")
-    // }
+    
     // push();
     //     translate(w, 0);
     //     scale(-1, 1);
@@ -300,7 +304,8 @@ function detectMotion() {
                 h = capture.height;
             var i = 0;
             var pixels = capture.pixels;
-            var thresholdAmount = select('#thresholdAmount').value() * 255. / 100.;
+            var thresholdAmount = map(mouseX, 0, width, 0, 255)
+            // var thresholdAmount = select('#thresholdAmount').value() * 255. / 100.;
             thresholdAmount *= 3; // 3 for r, g, b
             for (var y = 0; y < h; y++) {
                 for (var x = 0; x < w; x++) {
