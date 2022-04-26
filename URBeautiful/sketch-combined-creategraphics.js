@@ -338,7 +338,7 @@ function rightVideo() {
       // fill(0, 255, 255)
       // textSize(150);
       // text(floor(eyeDistance), w+100, h/2);
-      if (eyeDistance > 80 && shouldTakePhoto) {
+      if (eyeDistance > 60 && shouldTakePhoto) {
         save("youre-beautiful-once.jpg")
         shouldTakePhoto = false;
       }
