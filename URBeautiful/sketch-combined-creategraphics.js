@@ -1,5 +1,5 @@
-//可更改版本
-//面部精细识别
+//为最终版本进行的更改
+//左边：盲人的幻觉；右边转换成点
 // The actual helpful link: https://www.npmjs.com/package/@tensorflow-models/face-landmarks-detection
 
 
@@ -329,6 +329,7 @@ function rightVideo() {
 
       pop();
 
+      //眼距-储存照片
       // check distance between eyes to trigger photo
       let lEye = createVector(f.scaledMesh[133][0], f.scaledMesh[133][1])
       let rEye = createVector(f.scaledMesh[362][0], f.scaledMesh[362][1])
@@ -338,9 +339,13 @@ function rightVideo() {
       // fill(0, 255, 255)
       // textSize(150);
       // text(floor(eyeDistance), w+100, h/2);
-      if (eyeDistance > 60 && shouldTakePhoto) {
+
+      //相片储存
+      if (eyeDistance > 90 && shouldTakePhoto) {
         save("youre-beautiful-once.jpg")
-        shouldTakePhoto = false;
+
+        //加了这个之后一次会下载好几张
+        shouldTakePhoto = false; 
       }
 
     }
