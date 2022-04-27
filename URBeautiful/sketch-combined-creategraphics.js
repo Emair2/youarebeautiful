@@ -10,7 +10,7 @@ let faces;
 const w = 640;
 const h = 480;
 let shouldTakePhoto = true;
-
+let captureTime = 0;
 
 // left video variables
 let lc;
@@ -20,9 +20,13 @@ var threshold = 40; // lower threshold means letters will only stop on very dark
 const fallRate = 1; // higher == faster letters
 var fallingLetters = [];
 
+let textCanvas;
+
 function setup() {
   createCanvas(w * 2, h);
+  
   lc = createGraphics(w, h);
+  textCanvas = createGraphics(w * 2, h);
 
   capture = createCapture(VIDEO,
     function () {
@@ -109,7 +113,14 @@ function leftVideo() {
     lc.translate(w, 0);
     lc.scale(-1, 1);
     lc.image(capture, 0, 0);
+    
+    //图中的字
     lc.pop();
+    textCanvas.textStyle(BOLD);
+      textCanvas.fill(255, 255, 255);
+      textCanvas.textSize(8);
+      textCanvas.textAlign(CENTER)
+      textCanvas.text('You are beautiful.', w/2, h/2);
 
   }
 
@@ -160,9 +171,7 @@ function leftVideo() {
       lc.text(f.char, f.x, f.y + 300);
 
       lc.strokeWeight(0);
-      lc.textStyle(ITALIC);
-      lc.textSize(21);
-      //text('You are beautiful.', 30, 40);
+      
       //text('Seeing a bunny and saying it is cute,', 240, 60);
       //text('Seeing a lion and saying it is scary.', 60, 80);
       //text('Never knew how they bled and loved each other', 160, 100);
@@ -192,10 +201,11 @@ function leftVideo() {
 
     //字母雨位置参数
     lc.text(fallingLetters[i].char, fallingLetters[i].x + 37, fallingLetters[i].y);
-
+    
   }
 
   image(lc, 0, 0);
+  image(textCanvas, 0, 0);
 
 }
 
@@ -342,11 +352,13 @@ function rightVideo() {
       // text(floor(eyeDistance), w+100, h/2);
 
       //相片储存
-      if (eyeDistance > 70 && shouldTakePhoto) {
+      const PHOTO_DELAY = 2000
+
+      if (eyeDistance > 70 && millis() - captureTime > PHOTO_DELAY ) {
         save("youre-beautiful-once.jpg")
 
-        //加了这个之后一次会下载好几张
-        shouldTakePhoto = false;
+        // shouldTakePhoto = false;
+        captureTime = millis()
 
       } 
     
