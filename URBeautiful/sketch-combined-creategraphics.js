@@ -44,6 +44,7 @@ function setup() {
 
 
 function draw() {
+  
   //background(0);
   if (capture.loadedmetadata && model !== undefined) {
     getFaces();
@@ -54,6 +55,8 @@ function draw() {
   leftVideo();
 }
 
+
+//左边视频
 function leftVideo() {
 
   //lc.fill(120, 255, 150);
@@ -159,7 +162,7 @@ function leftVideo() {
       lc.strokeWeight(0);
       lc.textStyle(ITALIC);
       lc.textSize(21);
-      //text('People always think they are affectionate.', 30, 40);
+      //text('You are beautiful.', 30, 40);
       //text('Seeing a bunny and saying it is cute,', 240, 60);
       //text('Seeing a lion and saying it is scary.', 60, 80);
       //text('Never knew how they bled and loved each other', 160, 100);
@@ -196,7 +199,7 @@ function leftVideo() {
 
 }
 
-
+//右边视频
 function rightVideo() {
   noStroke();
 
@@ -206,9 +209,6 @@ function rightVideo() {
 
   if (faces !== undefined) {
     for (const f of faces) {
-
-      //改背景颜色，但是加了没办法多人
-
       push();
       translate(w, 0);
 
@@ -329,6 +329,7 @@ function rightVideo() {
 
       pop();
 
+      
       //眼距-储存照片
       // check distance between eyes to trigger photo
       let lEye = createVector(f.scaledMesh[133][0], f.scaledMesh[133][1])
@@ -341,13 +342,14 @@ function rightVideo() {
       // text(floor(eyeDistance), w+100, h/2);
 
       //相片储存
-      if (eyeDistance > 90 && shouldTakePhoto) {
+      if (eyeDistance > 100 && shouldTakePhoto) {
         save("youre-beautiful-once.jpg")
 
         //加了这个之后一次会下载好几张
-        shouldTakePhoto = false; 
-      }
+        shouldTakePhoto = false;
 
+      } 
+    
     }
   }
 
@@ -502,6 +504,5 @@ function detectMotion() {
 }
 
 
-function mousePressed() {
+//function mousePressed() {
   //save("myimage.jpg")
-}
