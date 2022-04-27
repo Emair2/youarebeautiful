@@ -342,7 +342,7 @@ function rightVideo() {
       // text(floor(eyeDistance), w+100, h/2);
 
       //相片储存
-      if (eyeDistance > 100 && shouldTakePhoto) {
+      if (eyeDistance > 70 && shouldTakePhoto) {
         save("youre-beautiful-once.jpg")
 
         //加了这个之后一次会下载好几张
