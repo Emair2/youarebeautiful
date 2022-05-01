@@ -120,7 +120,7 @@ function leftVideo() {
       textCanvas.fill(255, 255, 255);
       textCanvas.textSize(8);
       textCanvas.textAlign(CENTER)
-      textCanvas.text('You are beautiful.', w/2, h/2);
+      textCanvas.text('', w/2, h/2);
 
   }
 
