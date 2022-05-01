@@ -354,8 +354,8 @@ function rightVideo() {
       //相片储存
       const PHOTO_DELAY = 2000
 
-      if (eyeDistance > 70 && millis() - captureTime > PHOTO_DELAY ) {
-        save("youre-beautiful-once.jpg")
+      if (eyeDistance > 80 && millis() - captureTime > PHOTO_DELAY ) {
+        save("URBeautiful.jpg")
 
         // shouldTakePhoto = false;
         captureTime = millis()
