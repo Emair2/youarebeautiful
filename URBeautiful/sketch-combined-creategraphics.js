@@ -41,6 +41,8 @@ function setup() {
 
   colorMode(HSB, 255);
 
+  frameRate(30);
+
   //检测停止的部分
   capture.elt.setAttribute('playsinline', '');
 
