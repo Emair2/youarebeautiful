@@ -29,7 +29,6 @@ let textCanvas;
 //souund
 function preload() {
   song = loadSound('You are beautiful .mp3');
-  setLoop(Boolean);
   //play([startTime]);
 }
 
@@ -63,14 +62,15 @@ function setup() {
 }
 
 
-function mousePressed() {
-  if (song.isPlaying()) {
+//function mousePressed() {
+  //if (song.isPlaying()) {
     // .isPlaying() returns a boolean
-    song.stop();
-  } else {
-    song.play();
-  }
-}
+    //song.stop();
+  //} else {
+    //song.play();
+  //}
+  //setLoop(Boolean);
+//}
 
 
 function draw() {
@@ -382,6 +382,8 @@ function rightVideo() {
 
       if (eyeDistance > 80 && millis() - captureTime > PHOTO_DELAY ) {
         save("URBeautiful.jpg")
+        //song.isPlaying()
+        song.play();
 
         // shouldTakePhoto = false;
         captureTime = millis()
