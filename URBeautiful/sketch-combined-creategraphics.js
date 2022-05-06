@@ -12,6 +12,9 @@ const h = 480;
 let shouldTakePhoto = true;
 let captureTime = 0;
 
+//sound
+let song;
+
 // left video variables
 let lc;
 let capture;
@@ -21,6 +24,14 @@ const fallRate = 1; // higher == faster letters
 var fallingLetters = [];
 
 let textCanvas;
+
+
+//souund
+function preload() {
+  song = loadSound('You are beautiful .mp3');
+  setLoop(Boolean);
+  //play([startTime]);
+}
 
 function setup() {
   createCanvas(w * 2, h);
@@ -46,6 +57,19 @@ function setup() {
   //检测停止的部分
   capture.elt.setAttribute('playsinline', '');
 
+  //sound
+  song = loadSound('You are beautiful .mp3');
+
+}
+
+
+function mousePressed() {
+  if (song.isPlaying()) {
+    // .isPlaying() returns a boolean
+    song.stop();
+  } else {
+    song.play();
+  }
 }
 
 
