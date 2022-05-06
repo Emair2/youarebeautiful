@@ -104,7 +104,7 @@ function leftVideo() {
       var i = 0;
       var pixels = capture.pixels;
       // var thresholdAmount = (select("#thresholdAmount").value() * 255) / 100;
-      var thresholdAmount = 127;
+      var thresholdAmount = 120;
       thresholdAmount *= 3; // 3 for r, g, b
       
       for (var y = 0; y < h; y++) {
@@ -118,7 +118,7 @@ function leftVideo() {
           previousPixels[i + 1] = pixels[i + 1];
           previousPixels[i + 2] = pixels[i + 2];
           var diffs = rdiff + gdiff + bdiff;
-          var output = 180;
+          var output = 200;
           if (diffs > thresholdAmount) {
             output = 30000;
             total += diffs;
@@ -147,6 +147,7 @@ function leftVideo() {
       textCanvas.textSize(8);
       textCanvas.textAlign(CENTER)
       textCanvas.text('', w/2, h/2);
+      
 
   }
 
