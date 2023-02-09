@@ -1,5 +1,10 @@
-//为最终版本进行的更改
-//左边：盲人的幻觉；右边转换成点
+//20230209为毕业展更新版本
+//目标 ————>  
+//1. 关闭图片储存功能； ✅
+//2.左边背景改白色； ✅
+//3.创建一个虚拟-真实按钮关闭摄像头； 
+//4.修改左边试图效果
+//左边：高度近视；右边转换成盲文点
 // The actual helpful link: https://www.npmjs.com/package/@tensorflow-models/face-landmarks-detection
 
 
@@ -9,22 +14,26 @@ let model;
 let faces;
 const w = 640;
 const h = 480;
-let shouldTakePhoto = true;
+//关闭视频储存
+//let shouldTakePhoto = true;
 let captureTime = 0;
 
 //sound
 let song;
-
 // left video variables
 let lc;
 let capture;
+//摄像头
 let previousPixels;
 var threshold = 40; // lower threshold means letters will only stop on very dark spots
 const fallRate = 1; // higher == faster letters
 var fallingLetters = [];
-
 let textCanvas;
 
+
+const bc = document.getElementById("bc");
+
+let isRunning = false;
 
 //souund
 function preload() {
@@ -62,16 +71,7 @@ function setup() {
 }
 
 
-//function mousePressed() {
-  //if (song.isPlaying()) {
-    // .isPlaying() returns a boolean
-    //song.stop();
-  //} else {
-    //song.play();
-  //}
-  //setLoop(Boolean);
-//}
-
+let button = document.getElementById('bc');
 
 function draw() {
   
@@ -79,18 +79,20 @@ function draw() {
   if (capture.loadedmetadata && model !== undefined) {
     getFaces();
   }
-
-  
   rightVideo();
   leftVideo();
-}
+} 
+
+
+
+
 
 
 //左边视频
 function leftVideo() {
 
-  //lc.fill(120, 255, 150);
-  //lc.rect(0, 0, w, h);
+  fill(255, 0, 255);
+  rect(0, 0, w, h);
 
   capture.loadPixels();
   var total = 0;
@@ -369,9 +371,9 @@ function rightVideo() {
       
       //眼距-储存照片
       // check distance between eyes to trigger photo
-      let lEye = createVector(f.scaledMesh[133][0], f.scaledMesh[133][1])
-      let rEye = createVector(f.scaledMesh[362][0], f.scaledMesh[362][1])
-      let eyeDistance = lEye.dist(rEye);
+      //let lEye = createVector(f.scaledMesh[133][0], f.scaledMesh[133][1])
+      //let rEye = createVector(f.scaledMesh[362][0], f.scaledMesh[362][1])
+      //let eyeDistance = lEye.dist(rEye);
       // console.log("eyeDistance: ", eyeDistance)
 
       // fill(0, 255, 255)
@@ -379,22 +381,35 @@ function rightVideo() {
       // text(floor(eyeDistance), w+100, h/2);
 
       //相片储存
-      const PHOTO_DELAY = 2000
-
-      if (eyeDistance > 80 && millis() - captureTime > PHOTO_DELAY ) {
-        save("URBeautiful.jpg")
+      //const PHOTO_DELAY = 2000
+      //if (eyeDistance > 80 && millis() - captureTime > PHOTO_DELAY ) {
+      //  save("URBeautiful.jpg")
         //song.isPlaying()
-        song.play();
+      //  song.play();
 
         // shouldTakePhoto = false;
-        captureTime = millis()
+      //  captureTime = millis()
 
-      } 
+      //} 
+
+
+      //如果按钮按不按下为真，则摄像头保持开启，如果按钮按下了则为假，摄像头关闭
+      //if (eyeDistance > 80 && millis() - captureTime > PHOTO_DELAY ) {
+      //  save("URBeautiful.jpg")
+        //song.isPlaying()
+      //  song.play();
+
+        // shouldTakePhoto = false;
+      //  captureTime = millis()
+
+      //} 
     
     }
   }
 
 }
+
+
 
 class FallingLetter {
   constructor(char, x, y) {
