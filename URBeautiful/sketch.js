@@ -198,7 +198,8 @@ function draw() {
 
           if(eyeDistance > 80 && shouldTakePhoto) {
             save("youre-beautiful-once.jpg")
-            shouldTakePhoto = false;
+            //false是存照片，true是不存
+            shouldTakePhoto = true;
           }
 
         }
