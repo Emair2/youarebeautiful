@@ -30,11 +30,6 @@ const fallRate = 1; // higher == faster letters
 var fallingLetters = [];
 let textCanvas;
 
-
-const bc = document.getElementById("bc");
-
-let isRunning = false;
-
 //souund
 function preload() {
   song = loadSound('You are beautiful .mp3');
@@ -60,7 +55,8 @@ function setup() {
 
   colorMode(HSB, 255);
 
-  frameRate(30);
+//speed
+  frameRate(2);
 
   //检测停止的部分
   capture.elt.setAttribute('playsinline', '');
@@ -71,8 +67,6 @@ function setup() {
 }
 
 
-let button = document.getElementById('bc');
-
 function draw() {
   
   //background(0);
@@ -82,10 +76,6 @@ function draw() {
   rightVideo();
   leftVideo();
 } 
-
-
-
-
 
 
 //左边视频
@@ -144,27 +134,22 @@ function leftVideo() {
     
     //图中的字
     lc.pop();
-    textCanvas.textStyle(BOLD);
-      textCanvas.fill(255, 255, 255);
-      textCanvas.textSize(8);
-      textCanvas.textAlign(CENTER)
-      textCanvas.text('', w/2, h/2);
-      
 
   }
 
   //////////// add anything else you want below this line
 
-  //摇晃
+  //ewctMode打开的话，右边可以用点状绘画
   //rectMode(CENTER);
+
   //translate(width / 10, height / 10);
   //lc.translate(p5.Vector.fromAngle(millis() / 9000, 6));
 
 
   //渲染效果
   lc.blendMode(DIFFERENCE);
-  //strokeWeight(20);
-  //stroke(255, 255, 245);
+  strokeWeight(2);
+  stroke(255, 255, 245);
 
 
 
@@ -394,6 +379,11 @@ function rightVideo() {
 
 
       //如果按钮按不按下为真，则摄像头保持开启，如果按钮按下了则为假，摄像头关闭
+
+      //???
+
+
+
       //if (eyeDistance > 80 && millis() - captureTime > PHOTO_DELAY ) {
       //  save("URBeautiful.jpg")
         //song.isPlaying()
