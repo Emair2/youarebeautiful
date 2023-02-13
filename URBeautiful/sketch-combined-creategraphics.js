@@ -17,7 +17,7 @@ const h = 480;
 //关闭视频储存
 //let shouldTakePhoto = true;
 let captureTime = 0;
-
+let buttonOn = false;
 //sound
 let song;
 // left video variables
@@ -75,6 +75,9 @@ function draw() {
   }
   rightVideo();
   leftVideo();
+  if (buttonOn == false){
+    background(255);
+  }
 } 
 
 
